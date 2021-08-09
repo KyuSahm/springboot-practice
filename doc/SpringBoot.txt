@@ -1,0 +1,7 @@
+1. Spring Boot의 기본개념
+1) Create stand-alone Spring application(Stand-alone으로 동작)
+2) Embed Tomcat, Jetty or Undertow directly (no need to deploy WAR files)
+3) Provide opinionated 'starter' dependencies to simplify your build configuration(starter 라이브러리를 이용해서 모든 lib dependency 해결)
+4) Automatically configure Spring and 3rd party libraries whenever possible(가능한한 자동 구성)
+5) Provide production-ready features such as metrics, health checks and externalized configuration
+6) Absolutely no code generation and no requirement for XML configuration
