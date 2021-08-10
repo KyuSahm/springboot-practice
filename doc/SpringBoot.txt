@@ -14,4 +14,16 @@
 
 3. Spring boot project 생성
 1) 방법1: Eclipse > New > Spring Starter Project
+- 생성시, Package 명과 Artifact를 수정 후, Next 버튼(Artifact 이름으로 디렉토리가 생성)
+- Web 아래에 위치한 Spring Web을 선택 후, Finish를 누른다.
+
 2) 방법2: https://start.spring.io에서 spring initializer를 이용
+
+4. Spring boot server의 홈디렉토리 - 두개가 존재
+1) 정적파일의 홈디렉토리 => html과 css그리고, image 파일을 넣어둔다.
+- src/main/resources/static
+
+2) 동적파일의 홈디렉토리
+- src/main/webapp
+
+3) 정적파일과 동적파일의 홈디렉토리 둘다 "http://localhost:8080/파일명"으로 접근 가능
