@@ -5,3 +5,13 @@
 4) Automatically configure Spring and 3rd party libraries whenever possible(가능한한 자동 구성)
 5) Provide production-ready features such as metrics, health checks and externalized configuration
 6) Absolutely no code generation and no requirement for XML configuration
+
+2. 개발 환경 셋팅
+1) Spring Tool Suite 4  for Eclipse 다운로드 - https://spring.io/tools 
+2) jar를 다운로드 받아서 zip으로 확장자 변경
+3) 압축파일을 열어서 contents.zip을 복사해 와서 압축을 풀면, "sts-XX.XX.X RELEASE" 폴더 생성
+4) 폴더 내의 "SpringToolSuite4.exe"를 실행하면 됨.
+
+3. Spring boot project 생성
+1) 방법1: Eclipse > New > Spring Starter Project
+2) 방법2: https://start.spring.io에서 spring initializer를 이용
