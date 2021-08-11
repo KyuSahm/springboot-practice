@@ -39,3 +39,20 @@
 예) http://localhost:8080/customer/notice/detail.jsp
 2) 동적파일의 홈디렉토리인(src/main/webapp)의 아래에 WEB-INF를 생성하면, 그 아래 폴더들은 웹브라우저에서 접근이 불가능
     따라서, src/main/webapp/view 폴더 아래에 JSP 파일을 위치시킨다.
+
+7. Resource View Resolver 설정
+1) NoticeController.java에서 View Resolver를 이용하면 아래와 같이 forward되는 jsp 경로를 줄일 수 있다.
+@RequestMapping("list")
+public String list(Model model) {
+    model.addAttribute("test", "Hello~");		
+    return "/WEB-INF/view/customer/notice/list.jsp";  => "customer/notice/list"로 줄일수 있다.
+}
+
+2) src/main/resources/application.properties에 아래의 view resolver 값들을 등록
+ spring.mvc.view.prefix=/WEB-INF/view/
+ spring.mvc.view.suffix=.jsp
+
+2) spring-webmvc-5.3.9.jar에 존재하는 DispatcherServlet(Front Controller)에 의해서 forwarding할 때, view resolver를 위해 등록된 값을 사용.
+
+
+

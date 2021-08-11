@@ -11,12 +11,12 @@ public class NoticeController {
 	@RequestMapping("list")
 	public String list(Model model) {
 		model.addAttribute("test", "Hello~");		
-		return "/WEB-INF/view/customer/notice/list.jsp";
+		return "customer/notice/list";
 	}
 	
 	// class Request Mapping + method Request Mapping
 	@RequestMapping("detail")
 	public String detail() {
-		return "/WEB-INF/view/customer/notice/detail.jsp";
+		return "customer/notice/detail";
 	}
 }
