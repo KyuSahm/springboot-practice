@@ -54,5 +54,14 @@ public String list(Model model) {
 
 2) spring-webmvc-5.3.9.jar에 존재하는 DispatcherServlet(Front Controller)에 의해서 forwarding할 때, view resolver를 위해 등록된 값을 사용.
 
+8. DevTools 설정하기
+1) 코드를 수정하고 저장하고, 변경내용을 인식해서 Spring Boot가 다시 시작함.
+2) 아래의 Dependency를 pom.xml에 추가하면 됨.
+ <dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-devtools</artifactId>
+ </dependency>
+3) controller 파일을 수정하면, 자동으로 재시작됨.
+
 
 
