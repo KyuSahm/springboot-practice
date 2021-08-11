@@ -5,17 +5,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/customer/notice/")
 public class NoticeController {
-	@RequestMapping("/customer/notice/list")
+	// class Request Mapping + method Request Mapping
+	@RequestMapping("list")
 	public String list(Model model) {
 		model.addAttribute("test", "Hello~");		
-		// RequestMapping와 문자열이 동일("/customer/notice/")하므로, 생략 가능		
-		return "list.jsp";
-		//return "/customer/notice/list.jsp";
+		return "/WEB-INF/view/customer/notice/list.jsp";
 	}
 	
-	@RequestMapping("/customer/notice/detail")
+	// class Request Mapping + method Request Mapping
+	@RequestMapping("detail")
 	public String detail() {
-		return "detail.jsp";
+		return "/WEB-INF/view/customer/notice/detail.jsp";
 	}
 }

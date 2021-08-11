@@ -33,3 +33,9 @@
   <groupId>org.apache.tomcat.embed</groupId>
   <artifactId>tomcat-embed-jasper</artifactId>
 </dependency>
+
+6. JSP 파일을 두는 위치.
+1) 동적파일의 홈디렉토리인(src/main/webapp)에 JSP 파일이 위치하면, 웹브라우저에서 바로 접근이 가능
+예) http://localhost:8080/customer/notice/detail.jsp
+2) 동적파일의 홈디렉토리인(src/main/webapp)의 아래에 WEB-INF를 생성하면, 그 아래 폴더들은 웹브라우저에서 접근이 불가능
+    따라서, src/main/webapp/view 폴더 아래에 JSP 파일을 위치시킨다.
