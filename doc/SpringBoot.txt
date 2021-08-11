@@ -27,3 +27,9 @@
 - src/main/webapp
 
 3) 정적파일과 동적파일의 홈디렉토리 둘다 "http://localhost:8080/파일명"으로 접근 가능
+
+5. JSP를 Servlet으로 바꿀 수 있도록 Jasper Library를 pom.xml에 추가
+<dependency>
+  <groupId>org.apache.tomcat.embed</groupId>
+  <artifactId>tomcat-embed-jasper</artifactId>
+</dependency>
