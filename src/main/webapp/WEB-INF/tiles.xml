@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  <!--  Tiles Documentation: https://tiles.apache.org/framework/tutorial/index.html
+        Example: wild card for tiles
+        notice.*.* => {1}.{2} wildcard
+   -->
+  <definition name="layout.common" template="/WEB-INF/view/inc/layout.jsp">
+    <put-attribute name="title"  value="공지사항" />
+    <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />    
+    <put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+  </definition>
+  <!-- 상속 받은 후, 동일한 이름의 attribute를 추가하면, 덮어쓰게 된다.-->
+  <definition name="home.*" extends="layout.common">
+    <put-attribute name="body"   value="/WEB-INF/view/{1}.jsp" />    
+  </definition>
+  <!-- 상속 받은 후, template 속성을 명시하면, 하위의 template를 사용하게 된다.-->  
+  <definition name="customer.*.*" template="/WEB-INF/view/customer/inc/layout.jsp" extends="layout.common">
+    <put-attribute name="aside"  value="/WEB-INF/view/customer/inc/aside.jsp" />
+    <put-attribute name="visual" value="/WEB-INF/view/customer/inc/visual.jsp" />
+    <put-attribute name="main"   value="/WEB-INF/view/customer/{1}/{2}.jsp" />    
+  </definition>
+  <!-- 상속 받은 후, template 속성을 명시하면, 하위의 template를 사용하게 된다.-->
+  <definition name="admin.*.*.*" template="/WEB-INF/view/admin/inc/layout.jsp" extends="layout.common">
+    <put-attribute name="aside"  value="/WEB-INF/view/admin/inc/aside.jsp" />
+    <put-attribute name="visual" value="/WEB-INF/view/admin/inc/visual.jsp" />
+    <put-attribute name="main"   value="/WEB-INF/view/admin/{1}/{2}/{3}.jsp" />    
+  </definition>
+</tiles-definitions>
