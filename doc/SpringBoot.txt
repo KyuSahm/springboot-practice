@@ -82,17 +82,26 @@ public class NoticeController {
 - Will create and register an instance of a SqlSessionTemplate got out of the SqlSessionFactory
 - Auto-scan your mappers, link them to the SqlSessionTemplate and register them to Spring context so they can be injected into your beans
 
-2) 라이브러리 다운로드
+2) project 명 오른쪽 클릭 > spring > add starters > SQL 항목의 MyBatis Framework 선택 and MySQL(Oracle) Driver 선택
+
+3) 라이브러리 다운로드
 - "mybatis-spring-boot-starter" dependency를 pom.xml에 추가
 - "MyBatis-setting1.png" 파일 참조
 
-3) application.properties에 db관련 정보 설정
+4) application.properties에 db관련 정보 설정
 - driver class name, url, username, password를 설정함.
 - "MyBatis-setting2.png" 참조
 
-4) Mapper 객체를 loc에 담기 위한 @Mapper 설정
+5) Mapper 객체를 loc에 담기 위한 @Mapper 설정
 - Dao Interface에 @Mapper를 설정하고, 각 메소드의 Annotation에 SQL Query를 사용
 - "MyBatis_setting3.png" 참조
+- 예) 아래와 같이 @Mapper와 @Select를 써주면, MyBatis에서 실제 구현체를 만들어서 IoC에 넣어준다.
+@Mapper
+public interface NoticeDao {
+	@Select("select * from notice")
+	List<Notice> getList();
+	Notice get(int id);
+}
 
 
 
