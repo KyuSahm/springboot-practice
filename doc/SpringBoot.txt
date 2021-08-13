@@ -96,12 +96,16 @@ public class NoticeController {
 - Dao Interface에 @Mapper를 설정하고, 각 메소드의 Annotation에 SQL Query를 사용
 - "MyBatis_setting3.png" 참조
 - 예) 아래와 같이 @Mapper와 @Select를 써주면, MyBatis에서 실제 구현체를 만들어서 IoC에 넣어준다.
-@Mapper
-public interface NoticeDao {
-	@Select("select * from notice")
-	List<Notice> getList();
-	Notice get(int id);
-}
+ @Mapper
+ public interface NoticeDao {
+     @Select("select * from notice")
+     List<Notice> getList();
+     Notice get(int id);
+ }
+
+12. 스프링 객체 사용방법(Dependency와 Injection 그리고 IoC 컨테이너)
+1) IoC 컨테이너 - 일반적으로 객체를 생성할 때, 큰 것에서부터 작은 순으로 만들지만, Spring Framework으로 만들면, 참조당하는 객체인 작은 것부터 큰 것 순으로 생성
+
 
 
 
