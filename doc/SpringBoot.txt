@@ -71,6 +71,31 @@ public String list(Model model) {
 public class NoticeController {
 }
 
+10. Spring Data Layer
+1) Controller - Service - Dao - 각각의 Layer를 별도의 개발자들이 전문적으로 개발 후, 협업
+2) Service Layer와 Dao Layer를 따로 두는 이유 - Service Layer를 구현하는 사람이 Dao Layer와 관련된 SQL을 알 필요가 없다.
+
+11. MyBatis 설정하는 방법
+1) MyBatis-Spring-Boot-Starter 역할
+- Autodetect an existing Datasource
+- Will create and register an instance of a SqlSessionFactory passing that DataSource as an input using the SqlSessionFactoryBean
+- Will create and register an instance of a SqlSessionTemplate got out of the SqlSessionFactory
+- Auto-scan your mappers, link them to the SqlSessionTemplate and register them to Spring context so they can be injected into your beans
+
+2) 라이브러리 다운로드
+- "mybatis-spring-boot-starter" dependency를 pom.xml에 추가
+- "MyBatis-setting1.png" 파일 참조
+
+3) application.properties에 db관련 정보 설정
+- driver class name, url, username, password를 설정함.
+- "MyBatis-setting2.png" 참조
+
+4) Mapper 객체를 loc에 담기 위한 @Mapper 설정
+- Dao Interface에 @Mapper를 설정하고, 각 메소드의 Annotation에 SQL Query를 사용
+- "MyBatis_setting3.png" 참조
+
+
+
 
 
 
