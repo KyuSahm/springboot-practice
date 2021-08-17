@@ -162,6 +162,27 @@ spring.datasource.password=111
 15. MyBatis DAO SQL Mapper XML Proposals 오류 문제
 1) Eclipse > Help > Eclipse Markerplace > XML로 검색해서, "Eclipse XML Editors and Tools 3.xx"를 설치하면 됨.
 
-
-
-
+16. Admin 화면 관련 요청사항 정리
+1) NoticeService
+- 페이지를 요청할 때
+  List<Notice> getViewList();
+  int getCount();     // 페이지 넘김 컨트롤
+- 검색을 요청할 때
+  List<Notice> getViewList(String field, String query);
+- 페이지를 요청할 때
+  List<Notice> getViewList(int page, String field, String query);
+  int getCount(int page, String field, String query);     // 페이지 넘김 컨트롤   
+- 일괄 공개를 요청할 때
+  int updatePubAll(int[] pubIds, int[] closeIds);
+- 일괄 삭제를 요청할 때
+  int deleteAll(int[] ids);  
+- 자세한 페이지 요청할 때
+  Notice get(id);
+  Notice getNext(id);
+  Notice getPrev(id);
+- 수정 페이지를 요청할 때     
+  Notice get(id);
+  int update(Notice notice);
+  int delete(int id);
+  int insert(Notice notice);
+2) eclipse에서 Ctrl + a로 모두 선택 후, Ctrol + Shift + f를 누르면, 자동 정렬  
