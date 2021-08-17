@@ -62,17 +62,6 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public int updatePubAll(int[] pubIds, int[] closeIds) {
-		// TODO Auto-generated method stub
-		return noticeDao.updatePubAll(pubIds, closeIds);
-	}
-
-	@Override
-	public int deleteAll(int[] ids) {
-		return noticeDao.deleteAll(ids);
-	}
-
-	@Override
 	public int update(Notice notice) {
 		return noticeDao.update(notice);
 	}
@@ -86,5 +75,15 @@ public class NoticeServiceImpl implements NoticeService {
 	public int insert(Notice notice) {
 		return noticeDao.insert(notice);
 	}
+	
+	@Override
+	public int updatePubAll(int[] pubIds, int[] closeIds) {
+		// TODO Auto-generated method stub
+		return noticeDao.updatePubAll(pubIds, closeIds);
+	}
 
+	@Override
+	public int deleteAll(int[] ids) {
+		return noticeDao.deleteAll(ids);
+	}
 }

@@ -17,6 +17,18 @@
            ) B
      WHERE B.SEQ BETWEEN #{start} AND #{end}
   </select>
+  <select id="getCount">
+    SELECT count(*) cnt
+      FROM NOTICE
+     WHERE ${field} like '%${query}%'
+     ORDER BY REGDATE DESC;
+  </select>
+  <select id="get" resultType="com.newlecture.web.entity.Notice" resultMap="noticeResultMap"> 
+    SELECT ID, TITLE, WRITER_ID, CONTENT, REGDATE, HIT, FILES, PUB
+      FROM NOTICE
+     WHERE id = #{id}
+  </select>
+  
   <!-- insert statement, id => method name, parameterType => method argument
   <insert id="insert" parameterType="com.newlecture.web.entity.Notice">
     insert into notice()
