@@ -17,7 +17,7 @@ public class NoticeController {
 	
 	@RequestMapping("list")
 	public String list() {
-		int page = 1;
+		int page = 2;
 		String field = "title";
 		String query = "";
 		

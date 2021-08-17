@@ -131,7 +131,32 @@ spring.datasource.password=111
     })
 	List<Station> getStationList();    
 
-
+14. XML 파일을 이용한 SQL Query RequestMapping
+1) https://mybatis.org/mybatis-3/getting-started.html의 "Exploreing Mapped SQL Statements"
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newlecture.web.dao.NoticeDao"><!-- Full name of interface -->
+  <resultMap id="noticeResultMap" type="com.newlecture.web.entity.Notice">
+    <result property="writerId" column="WRITER_ID"/>
+  </resultMap>
+  <!-- select statement, id => method name, resultType => class for one row -->
+  <select id="getList" resultType="com.newlecture.web.entity.Notice" resultMap="noticeResultMap"> 
+    SELECT B.ID, B.TITLE, B.WRITER_ID, B.CONTENT, B.REGDATE, B.HIT, B.FILES, B.PUB
+      FROM (SELECT ROWNUM SEQ, A.*
+              FROM (SELECT *
+                      FROM NOTICE
+                     WHERE ${field} like '%${query}%' => #{field} #{query}를 사용하면 'title'처럼 문자의 양쪽에 홑따옴표가 생김.
+                     ORDER BY REGDATE DESC) A
+           ) B
+     WHERE B.SEQ BETWEEN #{start} AND #{end}
+  </select>
+  <!-- insert statement, id => method name, parameterType => method argument
+  <insert id="insert" parameterType="com.newlecture.web.entity.Notice">
+    insert into notice()
+  </insert> -->
+</mapper>
 
 
 
