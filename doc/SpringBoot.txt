@@ -133,6 +133,7 @@ spring.datasource.password=111
 
 14. XML 파일을 이용한 SQL Query RequestMapping
 1) https://mybatis.org/mybatis-3/getting-started.html의 "Exploreing Mapped SQL Statements"
+2) https://mybatis.org/mybatis-3/ko/sqlmap-xml.html 참조
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -158,6 +159,8 @@ spring.datasource.password=111
   </insert> -->
 </mapper>
 
+15. MyBatis DAO SQL Mapper XML Proposals 오류 문제
+1) Eclipse > Help > Eclipse Markerplace > XML로 검색해서, "Eclipse XML Editors and Tools 3.xx"를 설치하면 됨.
 
 
 
