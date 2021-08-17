@@ -17,7 +17,11 @@ public class NoticeController {
 	
 	@RequestMapping("list")
 	public String list() {
-		List<Notice> list = service.getList();
+		int page = 1;
+		String field = "title";
+		String query = "";
+		
+		List<Notice> list = service.getList(page, field, query);
 		return "admin.board.notice.list";	
 	}
 	

@@ -19,7 +19,11 @@ public class NoticeController {
 	// class Request Mapping + method Request Mapping
 	@RequestMapping("list")
 	public String list(Model model) {
-		List<Notice> list = service.getList();
+		int page = 1;
+		String field = "title";
+		String query = "";
+		
+		List<Notice> list = service.getList(page, field, query);
 		model.addAttribute("list", list);
 		return "customer.notice.list";
 	}
