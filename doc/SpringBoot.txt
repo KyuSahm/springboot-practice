@@ -163,7 +163,8 @@ spring.datasource.password=111
 1) Eclipse > Help > Eclipse Markerplace > XML로 검색해서, "Eclipse XML Editors and Tools 3.xx"를 설치하면 됨.
 
 16. Admin 화면 관련 요청사항 정리
-1) NoticeService
+1) eclipse에서 Ctrl + a로 모두 선택 후, Ctrol + Shift + f를 누르면, 자동 정렬
+2) NoticeService
 - 페이지를 요청할 때
   List<Notice> getViewList();
   int getCount();     // 페이지 넘김 컨트롤
@@ -185,4 +186,7 @@ spring.datasource.password=111
   int update(Notice notice);
   int delete(int id);
   int insert(Notice notice);
-2) eclipse에서 Ctrl + a로 모두 선택 후, Ctrol + Shift + f를 누르면, 자동 정렬  
+
+3) NoticeDao
+- NoticeService에 대응되는 Dao 메소드 생성
+  

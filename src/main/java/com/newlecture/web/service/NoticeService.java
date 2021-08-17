@@ -7,10 +7,10 @@ import com.newlecture.web.entity.Notice;
 public interface NoticeService {
 
 	// 페이지를 요청할 때
-	List<Notice> getViewList();
+	List<Notice> getList();
 
 	// 검색을 요청할 때
-	List<Notice> getViewList(String field, String query);
+	List<Notice> getList(String field, String query);
 
 	// 페이지를 요청할 때
 	List<Notice> getList(int page, String field, String query);
