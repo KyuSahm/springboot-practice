@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
-import com.newlecture.web.controller.entity.Notice;
+import com.newlecture.web.entity.Notice;
 
 @Mapper
 public interface NoticeDao {

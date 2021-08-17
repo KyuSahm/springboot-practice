@@ -1,4 +1,4 @@
-package com.newlecture.web.controller.entity;
+package com.newlecture.web.entity;
 
 import java.util.Date;
 

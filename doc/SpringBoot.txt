@@ -115,6 +115,22 @@ spring.datasource.password=111
 12. 스프링 객체 사용방법(Dependency와 Injection 그리고 IoC 컨테이너)
 1) IoC 컨테이너 - 일반적으로 객체를 생성할 때, 큰 것에서부터 작은 순으로 만들지만, Spring Framework으로 만들면, 참조당하는 객체인 작은 것부터 큰 것 순으로 생성
 
+13. MyBatis Column 맵핑
+1) DB Table의 Column명과 Entity Class의 member 변수 명이 다를 경우
+2) @Result 속성에 멤버 변수명과, 칼럼명을 지정해줌.
+    @Select("select * from notice")
+    @Results({
+        @Result(property = "writerId", column = "WRITER_ID")
+    })
+    List<Notice> getList();
+3) 여러개의 칼럼도 각각 맵핑 가능
+    @Results({
+        @Result(property = "prevId", column = "prev_id"),
+        @Result(property = "nextId", column = "next_id"),
+        @Result(property = "externalCode", column = "external_code")
+    })
+	List<Station> getStationList();    
+
 
 
 

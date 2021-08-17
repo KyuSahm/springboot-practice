@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
         <main class="main">
             <h2 class="main title">공지사항</h2>
             
@@ -48,7 +49,7 @@
                         <td class="title indent text-align-left"><a href="detail">${n.title}</a></td>
                         <td>${n.writerId}</td>
                         <td>
-                            ${n.regdate}    
+                            <fmt:formatDate pattern="yyyy-MM-dd" value="${n.regdate}"/>
                         </td>
                         <td>${n.hit}</td>
                     </tr>

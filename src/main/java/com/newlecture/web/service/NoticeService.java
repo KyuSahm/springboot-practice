@@ -2,7 +2,7 @@ package com.newlecture.web.service;
 
 import java.util.List;
 
-import com.newlecture.web.controller.entity.Notice;
+import com.newlecture.web.entity.Notice;
 
 public interface NoticeService {
 
