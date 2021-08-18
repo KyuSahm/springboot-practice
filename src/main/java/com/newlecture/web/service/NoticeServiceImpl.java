@@ -31,7 +31,7 @@ public class NoticeServiceImpl implements NoticeService {
 		int start = 1 + (page - 1) * PAGE_SIZE;
 		int end = 5 + (page - 1) * PAGE_SIZE;
 		
-		List<Notice> list = noticeDao.getList(start, end, field, query);
+		List<Notice> list = noticeDao.getList(start, end, field, query, true);
 		return list;
 	}
 
@@ -78,8 +78,9 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Override
 	public int updatePubAll(int[] pubIds, int[] closeIds) {
-		// TODO Auto-generated method stub
-		return noticeDao.updatePubAll(pubIds, closeIds);
+		int pubCnt = noticeDao.updatePubAll(pubIds, true);
+		int closeCnt = noticeDao.updatePubAll(pubIds, false);
+		return pubCnt + closeCnt;
 	}
 
 	@Override

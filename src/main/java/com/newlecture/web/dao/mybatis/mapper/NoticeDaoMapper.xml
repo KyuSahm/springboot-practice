@@ -3,11 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newlecture.web.dao.NoticeDao"><!-- Full name of interface -->
-  <resultMap id="noticeResultMap" type="com.newlecture.web.entity.Notice">
+  <resultMap id="noticeMap" type="com.newlecture.web.entity.Notice">
     <result property="writerId" column="WRITER_ID"/>
   </resultMap>
   <!-- select statement, id => Dao Method name, resultType => class for one row -->
-  <select id="getList" resultType="com.newlecture.web.entity.Notice" resultMap="noticeResultMap"> 
+  <select id="getList" resultType="com.newlecture.web.entity.Notice" resultMap="noticeMap"> 
     SELECT B.ID, B.TITLE, B.WRITER_ID, B.CONTENT, B.REGDATE, B.HIT, B.FILES, B.PUB
       FROM (SELECT ROWNUM SEQ, A.*
               FROM (SELECT *
@@ -28,12 +28,12 @@
      WHERE ${field} like '%${query}%'
      ORDER BY REGDATE DESC;
   </select>
-  <select id="get" resultType="com.newlecture.web.entity.Notice" resultMap="noticeResultMap"> 
+  <select id="get" resultType="com.newlecture.web.entity.Notice" resultMap="noticeMap"> 
     SELECT ID, TITLE, WRITER_ID, CONTENT, REGDATE, HIT, FILES, PUB
       FROM NOTICE
      WHERE id = #{id}
   </select>
-  <select id="getNext" resultType="com.newlecture.web.entity.Notice" resultMap="noticeResultMap">
+  <select id="getNext" resultType="com.newlecture.web.entity.Notice" resultMap="noticeMap">
     SELECT ID, TITLE, WRITER_ID, CONTENT, REGDATE, HIT, FILES, PUB
 	  FROM (SELECT ROWNUM AS SEQ, C.*
 	          FROM (SELECT A.*
@@ -44,7 +44,7 @@
 	        ) D
 	  WHERE D.SEQ = 1	  
   </select>
-  <select id="getPrev" resultType="com.newlecture.web.entity.Notice" resultMap="noticeResultMap">
+  <select id="getPrev" resultType="com.newlecture.web.entity.Notice" resultMap="noticeMap">
     SELECT ID, TITLE, WRITER_ID, CONTENT, REGDATE, HIT, FILES, PUB
       FROM (SELECT ROWNUM AS SEQ, C.*
               FROM (SELECT A.*
