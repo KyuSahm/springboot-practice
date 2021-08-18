@@ -11,67 +11,61 @@ import com.newlecture.web.entity.Notice;
 
 @Repository
 public class MybatisNoticeDao implements NoticeDao {
-	@Autowired
-	private SqlSession sqlSession; // MyBatis 라이브러리에서 IoC 컨테이너에 담아준다. 우리는 꺼내서 쓰면 됨.
+	private NoticeDao mapper;	
 	
+	@Autowired
+	public MybatisNoticeDao(SqlSession sqlSession) { // Constructor injection		
+		mapper = sqlSession.getMapper(NoticeDao.class);
+	}
+
 	@Override
 	public List<Notice> getList(int start, int end, String field, String query, boolean pub) {
-		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);		
-		return noticeDao.getList(start, end, field, query, pub);
+		return mapper.getList(start, end, field, query, pub);
 	}
 
 	@Override
 	public int getCount(String field, String query) {
-		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);		
-		return noticeDao.getCount(field, query);
+		return mapper.getCount(field, query);
 	}
 
 	@Override
 	public Notice get(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.get(id);
 	}
 
 	@Override
 	public Notice getNext(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.getNext(id);
 	}
 
 	@Override
 	public Notice getPrev(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.getPrev(id);
 	}
 
 	@Override
 	public int update(Notice notice) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.update(notice);
 	}
 
 	@Override
 	public int insert(Notice notice) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.insert(notice);
 	}
 
 	@Override
 	public int delete(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.delete(id);
 	}
 
 	@Override
 	public int deleteAll(int[] ids) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.deleteAll(ids);
 	}
 
 	@Override
 	public int updatePubAll(int[] ids, boolean pub) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.updatePubAll(ids, pub);
 	}
 
 }
