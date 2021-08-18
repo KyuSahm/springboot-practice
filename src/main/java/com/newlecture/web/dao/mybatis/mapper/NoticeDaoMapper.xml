@@ -6,7 +6,7 @@
   <resultMap id="noticeResultMap" type="com.newlecture.web.entity.Notice">
     <result property="writerId" column="WRITER_ID"/>
   </resultMap>
-  <!-- select statement, id => method name, resultType => class for one row -->
+  <!-- select statement, id => Dao Method name, resultType => class for one row -->
   <select id="getList" resultType="com.newlecture.web.entity.Notice" resultMap="noticeResultMap"> 
     SELECT B.ID, B.TITLE, B.WRITER_ID, B.CONTENT, B.REGDATE, B.HIT, B.FILES, B.PUB
       FROM (SELECT ROWNUM SEQ, A.*
@@ -28,9 +28,72 @@
       FROM NOTICE
      WHERE id = #{id}
   </select>
-  
-  <!-- insert statement, id => method name, parameterType => method argument
+  <select id="getNext" resultType="com.newlecture.web.entity.Notice" resultMap="noticeResultMap">
+    SELECT ID, TITLE, WRITER_ID, CONTENT, REGDATE, HIT, FILES, PUB
+	  FROM (SELECT ROWNUM AS SEQ, C.*
+	          FROM (SELECT A.*
+	                  FROM NOTICE A, NOTICE B
+	                 WHERE B.ID = #{id}
+	                   AND A.REGDATE &gt; B.REGDATE
+	                 ORDER BY A.REGDATE ASC ) C
+	        ) D
+	  WHERE D.SEQ = 1	  
+  </select>
+  <select id="getPrev" resultType="com.newlecture.web.entity.Notice" resultMap="noticeResultMap">
+    SELECT ID, TITLE, WRITER_ID, CONTENT, REGDATE, HIT, FILES, PUB
+      FROM (SELECT ROWNUM AS SEQ, C.*
+              FROM (SELECT A.*
+                      FROM NOTICE A, NOTICE B
+                     WHERE B.ID = #{id}
+                       AND A.REGDATE &lt; B.REGDATE
+                     ORDER BY A.REGDATE DESC ) C
+            ) D
+      WHERE D.SEQ = 1      
+  </select>
+  <!-- update statement, id => Dao Method name, parameterType => method argument-->
+  <update id="update" parameterType="com.newlecture.web.entity.Notice">
+    UPDATE NOTICE
+       SET TITLE = #{title},
+           CONTENT = #{content},
+           HIT = #{hit},
+           PUB = #{pub}
+     WHERE ID = #{id}    
+  </update>
+  <!-- insert statement, id => Dao Method name, parameterType => method argument-->
   <insert id="insert" parameterType="com.newlecture.web.entity.Notice">
-    insert into notice()
-  </insert> -->
+    INSERT INTO NOTICE(TITLE, CONTENT, WRITER_ID)
+         VALUES (#{title}, #{content}, #{writerId})
+  </insert>
+  <!-- delete statement, id => Dao Method name, parameterType => can omit in case of int-->
+  <delete id="delete">
+    DELETE FROM NOTICE
+     WHERE id = #{id}
+  </delete>
+  <delete id="deleteAll">
+    DELETE FROM NOTICE
+     WHERE id in 
+     <foreach item="id" collection="ids" open="(" separator="," close=")">
+        #{id}
+     </foreach>
+  </delete>  
+  <update id="updatePubAll">
+     UPDATE NOTICE
+        SET pub = CASE id
+                <foreach item="id" collection="pubIds">
+                    WHEN #{id} THEN 1
+                </foreach>
+                <foreach item="id" collection="closeIds">
+                    WHEN #{id} THEN 0
+                </foreach>
+                  END
+      WHERE id in (
+            <foreach item="id" collection="pubIds" separator="," >
+                #{id}
+            </foreach>
+            ,
+            <foreach item="id" collection="closeIds" separator="," >
+                #{id}
+            </foreach>
+            )
+  </update>    
 </mapper>

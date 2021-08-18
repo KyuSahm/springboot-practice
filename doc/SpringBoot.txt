@@ -189,4 +189,56 @@ spring.datasource.password=111
 
 3) NoticeDao
 - NoticeService에 대응되는 Dao 메소드 생성
-  
+
+17. getPrev(int id)와 getNext(int id)를 위한 SQL문.
+1) 특이 사항으로 SQL Mapper XML안에 비교연산자 ">", "<"등을 사용못하므로 아래와 같이 변경.
+- >  - &gt;
+  <  - &lt;
+  >= - &gt;=
+  <= - &lt;=
+
+출처: https://yamea-guide.tistory.com/entry/Mybatis-비교연산자-부등호-안될때 [기타치는 개발자의 야매 가이드]
+
+
+- where #{num} <= 5 => where #{num} <![CDATA[<=]]> 5 
+
+    SELECT ID, TITLE, WRITER_ID, CONTENT, REGDATE, HIT, FILES, PUB
+      FROM (SELECT ROWNUM AS SEQ, C.*
+              FROM (SELECT A.*
+                      FROM NOTICE A, NOTICE B
+                     WHERE B.ID = #{id}
+                       AND A.REGDATE &lt; B.REGDATE
+                     ORDER BY A.REGDATE DESC ) C
+            ) D
+      WHERE D.SEQ = 1
+
+18. MyBatis Dynamic SQL
+1) https://mybatis.org/mybatis-3/ko/dynamic-sql.html
+2) 예 
+  <delete id="deleteAll">
+    DELETE FROM NOTICE
+     WHERE id in 
+     <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+        #{id}
+     </foreach>
+  </delete>
+  <update id="updatePubAll">
+     UPDATE NOTICE
+        SET pub = CASE id
+                <foreach item="id" collection="pubIds">
+                    WHEN #{id} THEN 1
+                </foreach>
+                <foreach item="id" collection="closeIds">
+                    WHEN #{id} THEN 0
+                </foreach>
+                  END
+      WHERE id in (
+            <foreach item="id" collection="pubIds" separator="," >
+                #{id}
+            </foreach>
+            ,
+            <foreach item="id" collection="closeIds" separator="," >
+                #{id}
+            </foreach>
+            )
+  </update>
