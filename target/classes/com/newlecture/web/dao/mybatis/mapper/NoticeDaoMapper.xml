@@ -75,7 +75,16 @@
      <foreach item="id" collection="ids" open="(" separator="," close=")">
         #{id}
      </foreach>
-  </delete>  
+  </delete>
+  <update id="updatePubAll">
+     UPDATE NOTICE
+        SET pub = #{pub}
+      WHERE id in
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+  </update>
+  <!--   
   <update id="updatePubAll">
      UPDATE NOTICE
         SET pub = CASE id
@@ -95,5 +104,5 @@
                 #{id}
             </foreach>
             )
-  </update>    
+  </update>-->    
 </mapper>

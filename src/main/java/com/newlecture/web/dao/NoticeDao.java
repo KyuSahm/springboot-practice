@@ -15,8 +15,8 @@ public interface NoticeDao {
 	Notice getPrev(int id);
 	int update(Notice notice);
 	int insert(Notice notice);
-	int delete(int id);
-	int updatePubAll(int[] pubIds, int[] closeIds);
+	int delete(int id);	
 	int deleteAll(int[] ids);
-	//int updatePubAll(int[] ids, boolean pub);
+	//int updatePubAll(int[] pubIds, int[] closeIds);
+	int updatePubAll(int[] ids, boolean pub);
 }
