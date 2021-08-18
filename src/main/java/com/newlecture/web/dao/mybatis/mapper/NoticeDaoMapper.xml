@@ -12,7 +12,12 @@
       FROM (SELECT ROWNUM SEQ, A.*
               FROM (SELECT *
                       FROM NOTICE
-                     WHERE ${field} like '%${query}%'
+                     <where>
+                       <if test="query != null and query !=''">  
+                           ${field} like '%${query}%'
+                       </if>    
+                       AND PUB = #{pub}
+                     </where>  
                      ORDER BY REGDATE DESC) A
            ) B
      WHERE B.SEQ BETWEEN #{start} AND #{end}

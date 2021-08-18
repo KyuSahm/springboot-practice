@@ -8,7 +8,7 @@ import com.newlecture.web.entity.Notice;
 
 @Mapper
 public interface NoticeDao {
-	List<Notice> getList(int start, int end, String field, String query);
+	List<Notice> getList(int start, int end, String field, String query, boolean pub);
 	int getCount(String field, String query);
 	Notice get(int id);
 	Notice getNext(int id);
