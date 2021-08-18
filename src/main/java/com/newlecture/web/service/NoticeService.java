@@ -7,19 +7,19 @@ import com.newlecture.web.entity.Notice;
 public interface NoticeService {
 
 	// 페이지를 요청할 때
-	List<Notice> getList();
+	List<Notice> getList(boolean pub);
 
 	// 검색을 요청할 때
-	List<Notice> getList(String field, String query);
+	List<Notice> getList(String field, String query, boolean pub);
 
 	// 페이지를 요청할 때
-	List<Notice> getList(int page, String field, String query);
+	List<Notice> getList(int page, String field, String query, boolean pub);
 
 	// 페이지 넘김 컨트롤
 	int getCount();
 
 	// 페이지 넘김 컨트롤
-	int getCount(String field, String query);
+	int getCount(String field, String query, boolean pub);
 
 	// 자세한 페이지 요청할 때
 	Notice get(int id);

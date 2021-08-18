@@ -6,7 +6,7 @@ import com.newlecture.web.entity.Notice;
 
 public interface NoticeDao {
 	List<Notice> getList(int start, int end, String field, String query, boolean pub);
-	int getCount(String field, String query);
+	int getCount(String field, String query, boolean pub);
 	Notice get(int id);
 	Notice getNext(int id);
 	Notice getPrev(int id);

@@ -22,11 +22,16 @@
            ) B
      WHERE B.SEQ BETWEEN #{start} AND #{end}
   </select>
-  <select id="getCount">
+  <select id="getCount" resultType="int">
     SELECT count(*) cnt
       FROM NOTICE
-     WHERE ${field} like '%${query}%'
-     ORDER BY REGDATE DESC;
+     <where>
+       <if test="query != null and query !=''">  
+           ${field} like '%${query}%'
+       </if>    
+       AND PUB = #{pub}
+     </where>
+     ORDER BY REGDATE DESC
   </select>
   <select id="get" resultType="com.newlecture.web.entity.Notice" resultMap="noticeMap"> 
     SELECT ID, TITLE, WRITER_ID, CONTENT, REGDATE, HIT, FILES, PUB

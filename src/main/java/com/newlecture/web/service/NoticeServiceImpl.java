@@ -17,32 +17,32 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	
 	@Override
-	public List<Notice> getList() {
-		return getList(1, "title", "");
+	public List<Notice> getList(boolean pub) {
+		return getList(1, "title", "", pub);
 	}
 
 	@Override
-	public List<Notice> getList(String field, String query) {
-		return getList(1, field, query);
+	public List<Notice> getList(String field, String query, boolean pub) {
+		return getList(1, field, query, pub);
 	}
 	
 	@Override
-	public List<Notice> getList(int page, String field, String query) {
+	public List<Notice> getList(int page, String field, String query, boolean pub) {
 		int start = 1 + (page - 1) * PAGE_SIZE;
 		int end = 5 + (page - 1) * PAGE_SIZE;
 		
-		List<Notice> list = noticeDao.getList(start, end, field, query, true);
+		List<Notice> list = noticeDao.getList(start, end, field, query, pub);
 		return list;
 	}
 
 	@Override
 	public int getCount() {
-		return getCount("title", "");
+		return getCount("title", "", true);
 	}
 
 	@Override
-	public int getCount(String field, String query) {
-		return noticeDao.getCount(field, query);
+	public int getCount(String field, String query, boolean pub) {
+		return noticeDao.getCount(field, query, pub);
 	}
 
 	@Override
@@ -78,6 +78,7 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Override
 	public int updatePubAll(int[] pubIds, int[] closeIds) {
+		// TODO: transaction control
 		int pubCnt = noticeDao.updatePubAll(pubIds, true);
 		int closeCnt = noticeDao.updatePubAll(pubIds, false);
 		return pubCnt + closeCnt;
